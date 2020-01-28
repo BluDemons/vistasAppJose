@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import { StyleSheet, View, ScrollView } from 'react-native'
+import { StyleSheet, View, ScrollView, SafeAreaView, ImageBackground } from 'react-native'
 import { Table, Row } from 'react-native-table-component'
+
+const image = 'https://img.freepik.com/psd-gratis/superposicion-sombra-sobre-fondo-textura-madera-blanca_1048-10825.jpg?size=626&ext=jpg'
 
 export default class Pedido extends Component {
     constructor(props) {
@@ -23,6 +25,7 @@ export default class Pedido extends Component {
       }
   
       return (
+        <ImageBackground source={{uri: image}} style={{width: '100%', height: '100%'}}>
         <View style={styles.container}>
           <ScrollView horizontal={true}>
             <View>
@@ -47,12 +50,13 @@ export default class Pedido extends Component {
             </View>
           </ScrollView>
         </View>
+        </ImageBackground>
       )
     }
   }
   
   const styles = StyleSheet.create({
-    container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+    container: { flex: 1, padding: 16, paddingTop: 30},
     header: { height: 50, backgroundColor: '#537791' },
     text: { textAlign: 'center', fontWeight: '100' },
     dataWrapper: { marginTop: -1 },
