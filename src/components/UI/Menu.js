@@ -1,10 +1,20 @@
-import React, {Component} from 'react';
-import { Modal, ImageBackground, Text, TextInput, SafeAreaView, TouchableHighlight, View, Alert, Button, StyleSheet} from 'react-native';
+import React, {Component} from 'react'
+import { Modal, ImageBackground, Text, TextInput, SafeAreaView, TouchableHighlight, View, Alert, Button, StyleSheet, Image} from 'react-native'
+//import ImagePicker from 'react-native-image-picker'
+
 
   const image = 'https://img.freepik.com/psd-gratis/superposicion-sombra-sobre-fondo-textura-madera-blanca_1048-10825.jpg?size=626&ext=jpg'
+  //const fondo = require('../../assets/fondo.jpg')
 
   export default class Menu extends Component {
     
+    constructor(props) {
+      super(props);
+      this.state = {
+        filePath: {},
+      }
+    }
+
     state = {
       modalVisible: false,
     };
@@ -12,10 +22,41 @@ import { Modal, ImageBackground, Text, TextInput, SafeAreaView, TouchableHighlig
     setModalVisible(visible) {
       this.setState({modalVisible: visible});
     }
-  
+//----------Esta seccion es para subir fotos desde el celular
+  //   chooseFile = () => {
+  //     var options = {
+  //       title: 'Select Image',
+  //       customButtons: [
+  //         { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
+  //       ],
+  //       storageOptions: {
+  //         skipBackup: true,
+  //         path: 'images',
+  //       },
+  //   };
+
+  //   ImagePicker.showImagePicker(options, response => {
+  //     console.log('Response = ', response);
+ 
+  //     if (response.didCancel) {
+  //       console.log('User cancelled image picker');
+  //     } else if (response.error) {
+  //       console.log('ImagePicker Error: ', response.error);
+  //     } else if (response.customButton) {
+  //       console.log('User tapped custom button: ', response.customButton);
+  //       alert(response.customButton);
+  //     } else {
+  //       let source = response;
+  //       this.setState({
+  //         filePath: source,
+  //       });
+  //     }
+  //   });
+  // };
+//-----------Fin de seccion  
     render() {
       return (
-        <ImageBackground source={{uri: image}} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={{uri:image}} style={{width: '100%', height: '100%'}}>
         <SafeAreaView style={styles.container}>
         <View>
           <Modal 
@@ -23,10 +64,11 @@ import { Modal, ImageBackground, Text, TextInput, SafeAreaView, TouchableHighlig
             transparent={false}
             visible={this.state.modalVisible}
             onRequestClose={() => {
-              alert('Modal has been closed.');
+              Alert('Modal has been closed.');
             }}>
             <View style={styles.modalStyle}>
               <View>
+                <Button title="Choose File" onPress={this.chooseFile.bind(this)} />
                 <Text>Producto:</Text>
                 <TextInput
                   style={{height: 40}}

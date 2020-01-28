@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { StyleSheet, View, ScrollView, SafeAreaView, ImageBackground } from 'react-native'
+import { StyleSheet, View, ScrollView, ImageBackground, Image } from 'react-native'
 import { Table, Row } from 'react-native-table-component'
 
 const image = 'https://img.freepik.com/psd-gratis/superposicion-sombra-sobre-fondo-textura-madera-blanca_1048-10825.jpg?size=626&ext=jpg'
@@ -9,10 +9,9 @@ export default class Pedido extends Component {
       super(props);
       this.state = {
         tableHead: ['Usuario', 'Pedido', 'Cantidad'],
-        widthArr: [200, 160, 120]
+        widthArr: [200, 160, 120],
       }
     }
-  
     render() {
       const state = this.state;
       const tableData = [];
