@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Modal,ImageBackground, Text,SafeAreaView, TouchableHighlight, View, Alert, Button, StyleSheet} from 'react-native';
+import { Modal, ImageBackground, Text, TextInput, SafeAreaView, TouchableHighlight, View, Alert, Button, StyleSheet} from 'react-native';
 
-  const image = './assets/fondo.png'
+  const image = 'https://img.freepik.com/psd-gratis/superposicion-sombra-sobre-fondo-textura-madera-blanca_1048-10825.jpg?size=626&ext=jpg'
 
   export default class Menu extends Component {
     
@@ -15,19 +15,39 @@ import {Modal,ImageBackground, Text,SafeAreaView, TouchableHighlight, View, Aler
   
     render() {
       return (
+        <ImageBackground source={{uri: image}} style={{width: '100%', height: '100%'}}>
         <SafeAreaView style={styles.container}>
         <View>
-          <Modal
+          <Modal 
             animationType="slide"
             transparent={false}
             visible={this.state.modalVisible}
             onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
+              alert('Modal has been closed.');
             }}>
-            <View style={{marginTop: 22}}>
+            <View style={styles.modalStyle}>
               <View>
-                <Text>Producto</Text>
-  
+                <Text>Producto:</Text>
+                <TextInput
+                  style={{height: 40}}
+                  placeholder="Escribe aquí el producto"
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
+                />
+                <Text>Descripción:</Text>
+                <TextInput
+                  style={{height: 40}}
+                  placeholder="Escribe aquí la descripción"
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
+                />
+                <Text>Precio:</Text>
+                <TextInput
+                  style={{height: 40}}
+                  placeholder="Escribe aquí el precio"
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
+                />
                 <TouchableHighlight
                   onPress={() => {
                     this.setModalVisible(!this.state.modalVisible);
@@ -72,12 +92,10 @@ import {Modal,ImageBackground, Text,SafeAreaView, TouchableHighlight, View, Aler
               this.setModalVisible(true);
             }}>
             <Text style={styles.text}>Viernes</Text>
-          </TouchableHighlight>
-          <ImageBackground source={{uri: image}} style={{width: '100%', height: '100%'}}>
-            <Text>Inside</Text>
-          </ImageBackground>
+          </TouchableHighlight>          
         </View>
         </SafeAreaView>
+        </ImageBackground>
       );
     }
   } 
@@ -113,4 +131,9 @@ import {Modal,ImageBackground, Text,SafeAreaView, TouchableHighlight, View, Aler
             borderBottomColor: '#eee',
             borderBottomWidth: StyleSheet.hairlineWidth,
         },
+        modalStyle:{
+          flex:1,
+          alignItems:'center',
+          marginTop: 100,
+        }
   })
